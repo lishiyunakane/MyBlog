@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Blog Home</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+  </head>
+  <body>
+    <h1>Blog Posts</h1>
+    <a href="{% url 'new_post' %}">Create New Post</a>
+    <!-- 链接到新建文章页面 -->
+    <ul>
+      {% for post in posts %}
+      <li>
+        <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
+        <!-- 链接到详情页 -->
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" width="200" />
+        <!-- 配图 -->
+        <p>{{ post.content }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
